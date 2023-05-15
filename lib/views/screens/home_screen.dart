@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wedding_card/controllers/home_controller.dart';
+import 'package:wedding_card/views/widgets/info_dialog.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -14,19 +15,34 @@ class HomeScreen extends StatelessWidget {
     controller.selectedIndex.value = 2;
     return Stack(children: <Widget>[
       Scaffold(
+          floatingActionButton: IconButton(
+            icon: Icon(
+              Icons.info,
+              color: Color.fromARGB(255, 0, 0, 0),
+              size: 40,
+            ),
+            // style: ButtonStyle(
+            //     iconColor: MaterialStatePropertyAll(
+            //         Color.fromARGB(255, 255, 255, 255)),
+            //     backgroundColor: MaterialStateProperty.all(Colors.amber)),
+            onPressed: () {
+              InfoDialog();
+            },
+          ),
+          floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
           backgroundColor: Colors.transparent,
           body: Center(
             child: Container(
-                constraints: BoxConstraints(minWidth: 300, maxWidth: 440),
+                constraints: BoxConstraints(minWidth: 200, maxWidth: 440),
                 // width: 500,
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      Image.asset("images/1.png"),
-                      Image.asset("images/2.png"),
-                      Image.asset("images/3.png"),
-                      Image.asset("images/4.png"),
-                      Image.asset("images/5.png"),
+                      Image.asset("images/1.gif"),
+                      Image.asset("images/2.gif"),
+                      Image.asset("images/3.gif"),
+                      Image.asset("images/4.gif"),
+                      Image.asset("images/5.gif"),
                     ],
                   ),
                 )),

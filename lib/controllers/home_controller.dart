@@ -6,6 +6,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:wedding_card/apis/rsvp_apis.dart';
 import 'package:wedding_card/apis/wish_apis.dart';
 import 'package:wedding_card/models/wish_model.dart';
+import 'package:wedding_card/views/widgets/audio_dialog.dart';
 import 'package:wedding_card/views/widgets/error_dialog.dart';
 import 'package:wedding_card/views/widgets/success_dialog.dart';
 
@@ -34,6 +35,8 @@ class HomeController extends GetxController {
       isLoading(true);
       var data = await WishApis.fetchData();
       dataList.assignAll(data);
+
+      AudioDialog();
     } finally {
       isLoading(false);
     }
@@ -614,7 +617,7 @@ _launchURL_waze() async {
 _launchURL_addToGCalender() async {
   // print("test");
   const url =
-      'https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=NXE5MGxnM3RmMmNsOTRmMXU4cWQ1aDBsdHAgbXVraGxpc2g5OUBt&tmsrc=mukhlish99%40gmail.com';
+      'https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=M2hrdnNzY20xcGpidGJzODM3bG9pNW10ZGUgbXVraGxpc2g5OUBt&tmsrc=mukhlish99%40gmail.com';
   final uri = Uri.parse(url);
   if (await canLaunchUrl(uri))
     return await launchUrl(uri);
@@ -626,7 +629,7 @@ _launchURL_addToGCalender() async {
 _launchURL_addToACalender() async {
   // print("test");
   const url =
-      'https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=NXE5MGxnM3RmMmNsOTRmMXU4cWQ1aDBsdHAgbXVraGxpc2g5OUBt&tmsrc=mukhlish99%40gmail.com';
+      'http://p66-caldav.icloud.com/published/2/MTc3MDY3MjI4OTMxNzcwNizx-NtNYf5wDYqI8U2WK9wbQIS98AVzsIjsTbnJmWG9z0naHEFHSjxayhi71VwGQLjqqn92nFt8LS6A8MFqBlY';
   final uri = Uri.parse(url);
   if (await canLaunchUrl(uri))
     return await launchUrl(uri);
