@@ -8,7 +8,7 @@ import 'package:http/http.dart' as http;
 class WishApis {
   static Future<List<WishModel>> fetchData() async {
     final response = await http
-        .get(Uri.parse('http://wed-api.mirulazam.store/api/fetch-wish'));
+        .get(Uri.parse('https://wed-api.mirulazam.store/api/fetch-wish'));
 
     if (response.statusCode == 200) {
       final data = json.decode(response.body)["data"] as List;
@@ -34,7 +34,7 @@ class WishApis {
     // print(controller.powerTextController.value?.text);
     // print("apis");
     final response = await http.post(
-      Uri.parse('http://wed-api.mirulazam.store/api/save-wish'),
+      Uri.parse('https://wed-api.mirulazam.store/api/save-wish'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },

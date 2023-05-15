@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:wedding_card/bindings/home_binding.dart';
 
 import 'views/screens/home_screen.dart';
 
@@ -11,11 +12,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: "test",
+      title: "Ekad Amirul Mukhlish & Fazirah",
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       getPages: [
-        GetPage(name: '/', page: () => HomeScreen()),
+        GetPage(name: '/', page: () => HomeScreen(), binding: HomeBinding()),
       ],
     );
   }

@@ -20,25 +20,24 @@ class HomeController extends GetxController {
   RxString ucapanNama = "".obs;
   //list of data
   RxList dataList = <WishModel>[].obs;
-
+  var isLoading = true.obs;
   @override
   void onInit() {
     super.onInit();
     fetchData();
   }
 
-  var isLoading = true.obs;
-
   void fetchData() async {
     // print(editForm_1.text);
     try {
       isLoading(true);
       var data = await WishApis.fetchData();
-      dataList.assignAll(data);
 
+      dataList.assignAll(data);
       AudioDialog();
     } finally {
       isLoading(false);
+      // AudioDialog();
     }
   }
 
@@ -457,7 +456,12 @@ class HomeController extends GetxController {
                     children: [
                       Expanded(
                         flex: 1,
-                        child: SizedBox(),
+                        child: IconButton(
+                          icon: Icon(Icons.refresh),
+                          onPressed: () {
+                            fetchData();
+                          },
+                        ),
                       ),
                       SizedBox(
                           // flex: 1,

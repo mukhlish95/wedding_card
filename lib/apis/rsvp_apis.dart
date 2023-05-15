@@ -13,7 +13,7 @@ class RsvpApis {
     // print(controller.powerTextController.value?.text);
     // print("apis");
     final response = await http.post(
-      Uri.parse('http://wed-api.mirulazam.store/api/save-rsvp'),
+      Uri.parse('https://wed-api.mirulazam.store/api/save-rsvp'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
