@@ -1,61 +1,162 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_timer_countdown/flutter_timer_countdown.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:wedding_card/apis/rsvp_apis.dart';
+import 'package:wedding_card/apis/wish_apis.dart';
+import 'package:wedding_card/models/wish_model.dart';
+import 'package:wedding_card/views/widgets/error_dialog.dart';
+import 'package:wedding_card/views/widgets/success_dialog.dart';
 
 class HomeController extends GetxController {
   RxInt selectedIndex = 0.obs;
+  RxString selectedOption = "".obs;
+  RxString kehadiran = "".obs;
+  RxString namaRsvp = "".obs;
+  RxString notelRsvp = "".obs;
+  RxString ucapanKomen = "".obs;
+  RxString ucapanNama = "".obs;
+  //list of data
+  RxList dataList = <WishModel>[].obs;
+
+  @override
+  void onInit() {
+    super.onInit();
+    fetchData();
+  }
+
+  var isLoading = true.obs;
+
+  void fetchData() async {
+    // print(editForm_1.text);
+    try {
+      isLoading(true);
+      var data = await WishApis.fetchData();
+      dataList.assignAll(data);
+    } finally {
+      isLoading(false);
+    }
+  }
 
   void onItemTapped(int index) {
     {
       selectedIndex(index);
-      String? _selectedOption;
+
       switch (index) {
         case 0:
           // print("0");
           Get.defaultDialog(
-              title: "Lokasi Majlis",
-              content: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+              title: "",
+              titlePadding: EdgeInsets.all(0),
+              content: Column(
                 children: [
-                  Column(
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      IconButton(
-                        onPressed: _launchURL_gmaps,
-                        icon: Image.asset(
-                          "/icons/gmaps.png",
-                          fit: BoxFit.scaleDown,
-                        ),
-                        iconSize: 40,
+                      Expanded(
+                        flex: 1,
+                        child: SizedBox(),
                       ),
-                      Text("Google Maps")
+                      SizedBox(
+                          // flex: 1,
+                          child: Text(
+                        "Lokasi Majlis",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Color.fromARGB(255, 67, 42, 21),
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold),
+                      )),
+                      Expanded(
+                        flex: 1,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            IconButton(
+                              icon: Icon(Icons.close),
+                              onPressed: Get.back,
+                            ),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
-                  Column(
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      IconButton(
-                        onPressed: _launchURL_waze,
-                        icon: Image.asset(
-                          "/icons/waze.png",
-                          fit: BoxFit.scaleDown,
-                        ),
-                        iconSize: 40,
+                      Column(
+                        children: [
+                          IconButton(
+                            onPressed: _launchURL_gmaps,
+                            icon: Image.asset(
+                              "/icons/gmaps.png",
+                              fit: BoxFit.scaleDown,
+                            ),
+                            iconSize: 40,
+                          ),
+                          Text("Google Maps")
+                        ],
                       ),
-                      Text("Waze")
+                      Column(
+                        children: [
+                          IconButton(
+                            onPressed: _launchURL_waze,
+                            icon: Image.asset(
+                              "/icons/waze.png",
+                              fit: BoxFit.scaleDown,
+                            ),
+                            iconSize: 40,
+                          ),
+                          Text("Waze")
+                        ],
+                      )
                     ],
-                  )
+                  ),
                 ],
               ),
               backgroundColor: Color.fromARGB(217, 202, 146, 87),
-              titleStyle: TextStyle(color: Colors.white),
+              titleStyle: TextStyle(color: Colors.white, fontSize: 0),
               middleTextStyle: TextStyle(color: Colors.white),
               radius: 30);
           break;
         case 1:
           Get.defaultDialog(
-              title: "Kalendar",
+              title: "",
+              titlePadding: EdgeInsets.all(0),
               content: Column(
                 children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Expanded(
+                        flex: 1,
+                        child: SizedBox(),
+                      ),
+                      SizedBox(
+                          // flex: 1,
+                          child: Text(
+                        "Kalendar",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Color.fromARGB(255, 67, 42, 21),
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold),
+                      )),
+                      Expanded(
+                        flex: 1,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            IconButton(
+                              icon: Icon(Icons.close),
+                              onPressed: Get.back,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                   Text("27-OGOS-2023"),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -69,36 +170,76 @@ class HomeController extends GetxController {
                     ),
                   ),
                   Column(
-                    children: [
+                    children: const [
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(8.0),
                         child: ElevatedButton(
                             onPressed: _launchURL_addToGCalender,
-                            child: Text("Add to Google Calender")),
+                            child: Text("Add to Google Calender"),
+                            style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStatePropertyAll<Color>(
+                                        Color.fromARGB(255, 2, 0, 131)))),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(8.0),
                         child: ElevatedButton(
                             onPressed: _launchURL_addToACalender,
-                            child: Text("Add to Apple Calender")),
+                            child: Text("Add to Apple Calender"),
+                            style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStatePropertyAll<Color>(
+                                        Color.fromARGB(255, 2, 0, 131)))),
                       )
                     ],
                   )
                 ],
               ),
               backgroundColor: Color.fromARGB(217, 202, 146, 87),
-              titleStyle: TextStyle(color: Colors.white),
+              titleStyle: TextStyle(color: Colors.white, fontSize: 0),
               middleTextStyle: TextStyle(color: Colors.white),
               radius: 30);
           break;
         case 2:
           Get.defaultDialog(
-              title: "Hubungi",
+              title: "",
+              titlePadding: EdgeInsets.all(0),
               content: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: SizedBox(),
+                        ),
+                        SizedBox(
+                            // flex: 1,
+                            child: Text(
+                          "Hubungi",
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                              color: Color.fromARGB(255, 67, 42, 21),
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold),
+                        )),
+                        Expanded(
+                          flex: 1,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              IconButton(
+                                icon: Icon(Icons.close),
+                                onPressed: Get.back,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                     Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                      SelectableText("Piut - 0178214402"),
+                      SelectableText("Encik Piut - 0178214402"),
                       IconButton(
                         onPressed: _launchURL_call_bapa,
                         icon: Icon(Icons.call),
@@ -114,8 +255,8 @@ class HomeController extends GetxController {
                       ),
                     ]),
                     Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                      SelectableText("Kalsom - 0135519044"),
-                      IconButton(
+                      SelectableText("Puan Kalsom - 0135519044"),
+                      const IconButton(
                         onPressed: _launchURL_call_mama,
                         icon: Icon(Icons.call),
                         color: Colors.indigo,
@@ -130,8 +271,8 @@ class HomeController extends GetxController {
                       ),
                     ]),
                     Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                      SelectableText("Amirul - 0133227605"),
-                      IconButton(
+                      SelectableText("Encik Amirul - 0133227605"),
+                      const IconButton(
                         onPressed: _launchURL_call_mirul,
                         icon: Icon(Icons.call),
                         color: Colors.indigo,
@@ -148,125 +289,297 @@ class HomeController extends GetxController {
                     ]),
                   ]),
               backgroundColor: Color.fromARGB(217, 202, 146, 87),
-              titleStyle: TextStyle(color: Colors.white),
+              titleStyle: TextStyle(color: Colors.white, fontSize: 0),
               middleTextStyle: TextStyle(color: Colors.white),
               radius: 30);
           break;
         case 3:
           Get.defaultDialog(
-              title: "Maklum Kehadiran",
+              title: "",
+              titlePadding: EdgeInsets.all(0),
               content: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Center(
-                  child: Column(
+                    child: Obx(
+                  () => Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      TextField(
-                        // controller: _controller1,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            flex: 1,
+                            child: SizedBox(),
+                          ),
+                          SizedBox(
+                              // flex: 1,
+                              child: Text(
+                            "Kehadiran",
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 67, 42, 21),
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold),
+                          )),
+                          Expanded(
+                            flex: 1,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                IconButton(
+                                  icon: Icon(Icons.close),
+                                  onPressed: Get.back,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      TextFormField(
+                        onChanged: (index) {
+                          namaRsvp.value = index;
+                        },
                         decoration: const InputDecoration(
+                          enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Color.fromARGB(255, 0, 61, 111))),
+                          focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Color.fromARGB(255, 255, 255, 255))),
                           hintText: 'Nama',
                         ),
                       ),
-                      TextField(
-                        // controller: _controller2,
-                        decoration: const InputDecoration(hintText: 'No Tel'),
+                      TextFormField(
+                        onChanged: (index) {
+                          notelRsvp.value = index;
+                        },
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly
+                        ],
+                        keyboardType: TextInputType.number,
+                        decoration: const InputDecoration(
+                          hintText: 'No Tel: 0123456789',
+                          enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Color.fromARGB(255, 0, 61, 111))),
+                          focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Color.fromARGB(255, 255, 255, 255))),
+                        ),
                       ),
                       RadioListTile<String>(
                         title: const Text('Tidak Hadir'),
-                        value: 'Option 1',
-                        groupValue: _selectedOption,
-                        onChanged: (String? value) {
-                          (() {
-                            _selectedOption = value;
-                          });
-                        },
+                        value: 'Tidak Hadir',
+                        groupValue: selectedOption.value,
+                        onChanged: (value) => rsvpValue(value),
                       ),
                       RadioListTile<String>(
                         title: const Text('Seorang'),
-                        value: 'Option 2',
-                        groupValue: _selectedOption,
-                        onChanged: (String? value) {
-                          (() {
-                            _selectedOption = value;
-                          });
-                        },
+                        value: 'Seorang',
+                        groupValue: selectedOption.value,
+                        onChanged: (value) => rsvpValue(value),
                       ),
                       RadioListTile<String>(
                         title: const Text('Sekeluarga'),
-                        value: 'Option 3',
-                        groupValue: _selectedOption,
-                        onChanged: (String? value) {
-                          (() {
-                            _selectedOption = value;
-                          });
-                        },
+                        value: 'Sekeluarga',
+                        groupValue: selectedOption.value,
+                        onChanged: (value) => rsvpValue(value),
                       ),
+                      RadioListTile<String>(
+                        title: const Text('Lain-lain'),
+                        value: 'lain2',
+                        groupValue: selectedOption.value,
+                        onChanged: (value) => rsvpValue(value),
+                      ),
+                      if (selectedOption.value == 'lain2')
+                        TextFormField(
+                          // controller: _otherTextController,
+                          decoration: const InputDecoration(
+                            enabledBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: Color.fromARGB(255, 0, 61, 111))),
+                            focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: Color.fromARGB(255, 255, 255, 255))),
+                            labelText: 'Other Option',
+                          ),
+                          onChanged: (index) => rsvpOtherValue(index),
+                        ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: ElevatedButton(
-                          onPressed: () {},
-                          child: const Text('Hantar'),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            // TextButton(
+                            //   onPressed: () => Get.back(),
+                            //   child: const Text(
+                            //     'tutup',
+                            //     style: TextStyle(
+                            //         color: Color.fromARGB(255, 2, 0, 131)),
+                            //   ),
+                            // ),
+                            ElevatedButton(
+                              onPressed: rsvpSave,
+                              child: const Text('Hantar'),
+                              style: const ButtonStyle(
+                                backgroundColor:
+                                    MaterialStatePropertyAll<Color>(
+                                        Color.fromARGB(255, 2, 0, 131)),
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
+                      )
                     ],
                   ),
-                ),
+                )),
               ),
               backgroundColor: Color.fromARGB(217, 202, 146, 87),
-              titleStyle: TextStyle(color: Colors.white),
+              titleStyle: TextStyle(color: Colors.white, fontSize: 0),
               middleTextStyle: TextStyle(color: Colors.white),
               radius: 30);
           break;
         case 4:
           Get.defaultDialog(
-              title: "Ucapan",
-              content: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(children: [
-                  Expanded(
-                    flex: 1,
-                    child: TextField(
-                      keyboardType: TextInputType.multiline,
-                      // controller: _nameController,
-                      decoration: const InputDecoration(
-                        hintText: 'Name',
+            title: "",
+            titlePadding: EdgeInsets.all(0),
+            content: Container(
+              width: 1000,
+              height: Get.height * 0.6,
+              padding: const EdgeInsets.all(7.0),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        flex: 1,
+                        child: SizedBox(),
+                      ),
+                      SizedBox(
+                          // flex: 1,
+                          child: Text(
+                        "Ucapan",
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
+                      )),
+                      Expanded(
+                        flex: 1,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            IconButton(
+                              icon: Icon(Icons.close),
+                              onPressed: Get.back,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  Obx(() => Expanded(
+                        child: ListView(
+                          children: dataList
+                              .map((element) => ListTile(
+                                    title: Center(
+                                        child: Text(
+                                            '"${element.komen.toString()}"')),
+                                    subtitle: Center(
+                                        child:
+                                            Text('${element.nama.toString()}')),
+                                  ))
+                              .toList(),
+                        ),
+                      )),
+                  Row(children: [
+                    Expanded(
+                      flex: 1,
+                      child: TextField(
+                        minLines: 1,
+                        maxLines: 3,
+                        keyboardType: TextInputType.multiline,
+                        onChanged: (index) {
+                          ucapanNama.value = index;
+                        },
+                        decoration: InputDecoration(
+                          hintText: 'Nama',
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(width: 8.0),
-                  Expanded(
-                    flex: 3,
-                    child: TextField(
-                      minLines: 1,
-                      maxLines: 5,
-                      keyboardType: TextInputType.multiline,
-                      // controller: _commentController,
-                      decoration: const InputDecoration(
-                        hintText: 'Comment',
+                    const SizedBox(width: 8.0),
+                    Expanded(
+                      flex: 3,
+                      child: TextField(
+                        minLines: 1,
+                        maxLines: 5,
+                        keyboardType: TextInputType.multiline,
+                        onChanged: (value) {
+                          ucapanKomen.value = value;
+                        },
+                        decoration: InputDecoration(
+                          hintText: 'Ucapan',
+                        ),
                       ),
                     ),
-                  ),
-                  IconButton(
-                    onPressed: () {
-                      // final String name = _nameController.text;
-                      // final String comment = _commentController.text;
-                      // setState(() {
-                      //   _comments.add(Comment(name: name, comment: comment));
-                      // });
-                      // _nameController.clear();
-                      // _commentController.clear();
-                    },
-                    icon: const Icon(Icons.send),
-                  ),
-                ]),
+                    IconButton(
+                      onPressed: ucapanSave,
+                      icon: const Icon(Icons.send),
+                    ),
+                  ]),
+                ],
               ),
-              backgroundColor: Color.fromARGB(217, 239, 239, 239),
-              titleStyle: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
-              middleTextStyle: TextStyle(color: Colors.white),
-              radius: 30);
+            ),
+            backgroundColor: Color.fromARGB(217, 239, 239, 239),
+            titleStyle:
+                TextStyle(color: Color.fromARGB(255, 0, 0, 0), fontSize: 0),
+            middleTextStyle: TextStyle(color: Colors.white),
+            radius: 30,
+          );
           break;
       }
     }
+  }
+
+  rsvpValue(value) {
+    selectedOption.value = value;
+    kehadiran.value = value;
+    // return print(value);
+  }
+
+  rsvpOtherValue(index) {
+    kehadiran.value = index;
+    // return print(index);
+  }
+
+  rsvpSave() async {
+    // print(namaRsvp.value);
+    // print(notelRsvp.value);
+    // print(kehadiran.value);
+    if (namaRsvp.value.isEmpty == false ||
+        notelRsvp.value.isEmpty == false ||
+        kehadiran.value.isEmpty == false) {
+      await RsvpApis.addApiData();
+      Get.smartManagement;
+      SuccessDialog();
+    } else {
+      ErrorDialog();
+    }
+  }
+
+  ucapanSave() async {
+    // print(ucapanNama.value);
+    // print(ucapanKomen.value);
+    if (ucapanNama.value.isEmpty == false ||
+        ucapanKomen.value.isEmpty == false) {
+      SuccessDialog();
+      await WishApis.addApiData();
+      dataList.clear();
+      fetchData();
+      Get.smartManagement;
+    } else {
+      ErrorDialog();
+    }
+    // Get.back();
   }
 }
 
