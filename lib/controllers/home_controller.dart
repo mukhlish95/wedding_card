@@ -206,90 +206,106 @@ class HomeController extends GetxController {
           Get.defaultDialog(
               title: "",
               titlePadding: EdgeInsets.all(0),
-              content: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          flex: 1,
-                          child: SizedBox(),
-                        ),
-                        SizedBox(
-                            // flex: 1,
-                            child: Text(
-                          "Hubungi",
-                          textAlign: TextAlign.start,
-                          style: TextStyle(
-                              color: Color.fromARGB(255, 67, 42, 21),
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold),
-                        )),
-                        Expanded(
-                          flex: 1,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              IconButton(
-                                icon: Icon(Icons.close),
-                                onPressed: Get.back,
-                              ),
-                            ],
+              content: Container(
+                width: 1000,
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            flex: 1,
+                            child: SizedBox(),
                           ),
-                        ),
-                      ],
-                    ),
-                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                      SelectableText("Encik Piut - 0178214402"),
-                      IconButton(
-                        onPressed: _launchURL_call_bapa,
-                        icon: Icon(Icons.call),
-                        color: Colors.indigo,
+                          SizedBox(
+                              // flex: 1,
+                              child: Text(
+                            "Hubungi",
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 67, 42, 21),
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold),
+                          )),
+                          Expanded(
+                            flex: 1,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                IconButton(
+                                  icon: Icon(Icons.close),
+                                  onPressed: Get.back,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
-                      IconButton(
-                        onPressed: _launchURL_whatsapp_bapa,
-                        icon: Image.asset(
-                          "/icons/WA.png",
-                          width: 30,
-                          color: Colors.lightGreenAccent,
-                        ),
-                      ),
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SelectableText(
+                              "Encik Piut - 0178214402",
+                              style: TextStyle(fontSize: 12),
+                            ),
+                            IconButton(
+                              onPressed: _launchURL_call_bapa,
+                              icon: Icon(Icons.call),
+                              color: Colors.indigo,
+                            ),
+                            IconButton(
+                              onPressed: _launchURL_whatsapp_bapa,
+                              icon: Image.asset(
+                                "/icons/WA.png",
+                                width: 30,
+                                color: Colors.lightGreenAccent,
+                              ),
+                            ),
+                          ]),
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SelectableText("Puan Kalsom - 0135519044",
+                                style: TextStyle(fontSize: 12)),
+                            const IconButton(
+                              onPressed: _launchURL_call_mama,
+                              icon: Icon(Icons.call),
+                              color: Colors.indigo,
+                            ),
+                            IconButton(
+                              onPressed: _launchURL_whatsapp_mama,
+                              icon: Image.asset(
+                                "/icons/WA.png",
+                                width: 30,
+                                color: Colors.lightGreenAccent,
+                              ),
+                            ),
+                          ]),
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SelectableText(
+                              "Encik Amirul - 0133227605",
+                              style: TextStyle(fontSize: 12),
+                            ),
+                            const IconButton(
+                              onPressed: _launchURL_call_mirul,
+                              icon: Icon(Icons.call),
+                              color: Colors.indigo,
+                            ),
+                            IconButton(
+                              onPressed: _launchURL_whatsapp_mirul,
+                              icon: Image.asset(
+                                "/icons/WA.png",
+                                width: 30,
+                                color: Colors.lightGreenAccent,
+                              ),
+                              // label: Text("Whatsapp")
+                            ),
+                          ]),
                     ]),
-                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                      SelectableText("Puan Kalsom - 0135519044"),
-                      const IconButton(
-                        onPressed: _launchURL_call_mama,
-                        icon: Icon(Icons.call),
-                        color: Colors.indigo,
-                      ),
-                      IconButton(
-                        onPressed: _launchURL_whatsapp_mama,
-                        icon: Image.asset(
-                          "/icons/WA.png",
-                          width: 30,
-                          color: Colors.lightGreenAccent,
-                        ),
-                      ),
-                    ]),
-                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                      SelectableText("Encik Amirul - 0133227605"),
-                      const IconButton(
-                        onPressed: _launchURL_call_mirul,
-                        icon: Icon(Icons.call),
-                        color: Colors.indigo,
-                      ),
-                      IconButton(
-                        onPressed: _launchURL_whatsapp_mirul,
-                        icon: Image.asset(
-                          "/icons/WA.png",
-                          width: 30,
-                          color: Colors.lightGreenAccent,
-                        ),
-                        // label: Text("Whatsapp")
-                      ),
-                    ]),
-                  ]),
+              ),
               backgroundColor: Color.fromARGB(217, 202, 146, 87),
               titleStyle: TextStyle(color: Colors.white, fontSize: 0),
               middleTextStyle: TextStyle(color: Colors.white),
@@ -299,8 +315,9 @@ class HomeController extends GetxController {
           Get.defaultDialog(
               title: "",
               titlePadding: EdgeInsets.all(0),
-              content: Padding(
-                padding: const EdgeInsets.all(8.0),
+              content: Container(
+                padding: EdgeInsets.all(8),
+                height: 400,
                 child: Center(
                     child: Obx(
                   () => Column(
@@ -337,65 +354,13 @@ class HomeController extends GetxController {
                           ),
                         ],
                       ),
-                      TextFormField(
-                        onChanged: (index) {
-                          namaRsvp.value = index;
-                        },
-                        decoration: const InputDecoration(
-                          enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Color.fromARGB(255, 0, 61, 111))),
-                          focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Color.fromARGB(255, 255, 255, 255))),
-                          hintText: 'Nama',
-                        ),
-                      ),
-                      TextFormField(
-                        onChanged: (index) {
-                          notelRsvp.value = index;
-                        },
-                        inputFormatters: [
-                          FilteringTextInputFormatter.digitsOnly
-                        ],
-                        keyboardType: TextInputType.number,
-                        decoration: const InputDecoration(
-                          hintText: 'No Tel: 0123456789',
-                          enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Color.fromARGB(255, 0, 61, 111))),
-                          focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Color.fromARGB(255, 255, 255, 255))),
-                        ),
-                      ),
-                      RadioListTile<String>(
-                        title: const Text('Tidak Hadir'),
-                        value: 'Tidak Hadir',
-                        groupValue: selectedOption.value,
-                        onChanged: (value) => rsvpValue(value),
-                      ),
-                      RadioListTile<String>(
-                        title: const Text('Seorang'),
-                        value: 'Seorang',
-                        groupValue: selectedOption.value,
-                        onChanged: (value) => rsvpValue(value),
-                      ),
-                      RadioListTile<String>(
-                        title: const Text('Sekeluarga'),
-                        value: 'Sekeluarga',
-                        groupValue: selectedOption.value,
-                        onChanged: (value) => rsvpValue(value),
-                      ),
-                      RadioListTile<String>(
-                        title: const Text('Lain-lain'),
-                        value: 'lain2',
-                        groupValue: selectedOption.value,
-                        onChanged: (value) => rsvpValue(value),
-                      ),
-                      if (selectedOption.value == 'lain2')
-                        TextFormField(
-                          // controller: _otherTextController,
+                      Container(
+                        height: 18,
+                        padding: const EdgeInsets.all(0),
+                        child: TextFormField(
+                          onChanged: (index) {
+                            namaRsvp.value = index;
+                          },
                           decoration: const InputDecoration(
                             enabledBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
@@ -403,8 +368,105 @@ class HomeController extends GetxController {
                             focusedBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
                                     color: Color.fromARGB(255, 255, 255, 255))),
-                            labelText: 'Other Option',
+                            hintText: 'Nama',
                           ),
+                        ),
+                      ),
+                      Container(
+                        height: 30,
+                        padding: const EdgeInsets.symmetric(vertical: 1),
+                        child: TextFormField(
+                          onChanged: (index) {
+                            notelRsvp.value = index;
+                          },
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly
+                          ],
+                          keyboardType: TextInputType.number,
+                          decoration: const InputDecoration(
+                            hintText: 'No Tel: 0123456789',
+                            enabledBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: Color.fromARGB(255, 0, 61, 111))),
+                            focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: Color.fromARGB(255, 255, 255, 255))),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        height: 35,
+                        padding: const EdgeInsets.all(0),
+                        child: RadioListTile<String>(
+                          // contentPadding: EdgeInsets.all(0),
+                          title: const Text(
+                            'Tidak Hadir',
+                            style: TextStyle(fontSize: 15),
+                          ),
+                          value: 'Tidak Hadir',
+                          groupValue: selectedOption.value,
+                          onChanged: (value) => rsvpValue(value),
+                        ),
+                      ),
+                      Container(
+                        height: 35,
+                        padding: const EdgeInsets.all(0),
+                        child: RadioListTile<String>(
+                          // contentPadding: EdgeInsets.all(0),
+                          title: const Text(
+                            'Seorang',
+                            style: TextStyle(fontSize: 15),
+                          ),
+                          value: 'Seorang',
+                          groupValue: selectedOption.value,
+                          onChanged: (value) => rsvpValue(value),
+                        ),
+                      ),
+                      Container(
+                        height: 35,
+                        padding: const EdgeInsets.all(0),
+                        child: RadioListTile<String>(
+                          // contentPadding: EdgeInsets.all(0),
+                          title: const Text(
+                            'Sekeluarga',
+                            style: TextStyle(fontSize: 15),
+                          ),
+                          value: 'Sekeluarga',
+                          groupValue: selectedOption.value,
+                          onChanged: (value) => rsvpValue(value),
+                        ),
+                      ),
+                      Container(
+                        height: 35,
+                        padding: const EdgeInsets.all(0),
+                        child: RadioListTile<String>(
+                          // contentPadding: EdgeInsets.all(0),
+                          title: const Text(
+                            'Lain-lain',
+                            style: TextStyle(fontSize: 15),
+                          ),
+                          value: 'lain2',
+                          groupValue: selectedOption.value,
+                          onChanged: (value) => rsvpValue(value),
+                        ),
+                      ),
+                      if (selectedOption.value == 'lain2')
+                        TextFormField(
+                          style: TextStyle(
+                              backgroundColor: Colors.white,
+                              // background: Paint(),
+                              color: Color.fromARGB(255, 0, 0, 0)),
+                          decoration: const InputDecoration(
+                              enabledBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: Color.fromARGB(255, 0, 0, 0))),
+                              focusedBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color:
+                                          Color.fromARGB(255, 255, 255, 255))),
+                              labelText: 'Other Option',
+                              labelStyle: TextStyle(
+                                  color: Color.fromARGB(255, 56, 130, 152))),
                           onChanged: (index) => rsvpOtherValue(index),
                         ),
                       Padding(
@@ -442,12 +504,15 @@ class HomeController extends GetxController {
               radius: 30);
           break;
         case 4:
+          double bottomInsets = Get.mediaQuery.viewInsets.bottom;
+          bottomInsets = Get.height * 0.45;
           Get.defaultDialog(
             title: "",
             titlePadding: EdgeInsets.all(0),
             content: Container(
+              // constraints: BoxConstraints.loose(Size(1000, 1000)),
               width: 1000,
-              height: Get.height * 0.6,
+              height: bottomInsets,
               padding: const EdgeInsets.all(7.0),
               child: Column(
                 children: [
@@ -456,12 +521,13 @@ class HomeController extends GetxController {
                     children: [
                       Expanded(
                         flex: 1,
-                        child: IconButton(
-                          icon: Icon(Icons.refresh),
-                          onPressed: () {
-                            fetchData();
-                          },
-                        ),
+                        child: SizedBox(),
+                        // child: IconButton(
+                        //   icon: Icon(Icons.refresh),
+                        //   onPressed: () {
+                        //     fetchData();
+                        //   },
+                        // ),
                       ),
                       SizedBox(
                           // flex: 1,
@@ -485,6 +551,7 @@ class HomeController extends GetxController {
                     ],
                   ),
                   Obx(() => Expanded(
+                        flex: 1,
                         child: ListView(
                           children: dataList
                               .map((element) => ListTile(
@@ -498,41 +565,46 @@ class HomeController extends GetxController {
                               .toList(),
                         ),
                       )),
-                  Row(children: [
-                    Expanded(
-                      flex: 1,
-                      child: TextField(
-                        minLines: 1,
-                        maxLines: 3,
-                        keyboardType: TextInputType.multiline,
-                        onChanged: (index) {
-                          ucapanNama.value = index;
-                        },
-                        decoration: InputDecoration(
-                          hintText: 'Nama',
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Row(children: [
+                        Expanded(
+                          flex: 2,
+                          child: TextField(
+                            minLines: 1,
+                            maxLines: 3,
+                            keyboardType: TextInputType.multiline,
+                            onChanged: (index) {
+                              ucapanNama.value = index;
+                            },
+                            decoration: InputDecoration(
+                              hintText: 'Nama',
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                    const SizedBox(width: 8.0),
-                    Expanded(
-                      flex: 3,
-                      child: TextField(
-                        minLines: 1,
-                        maxLines: 5,
-                        keyboardType: TextInputType.multiline,
-                        onChanged: (value) {
-                          ucapanKomen.value = value;
-                        },
-                        decoration: InputDecoration(
-                          hintText: 'Ucapan',
+                        const SizedBox(width: 8.0),
+                        Expanded(
+                          flex: 4,
+                          child: TextField(
+                            minLines: 1,
+                            maxLines: 5,
+                            keyboardType: TextInputType.multiline,
+                            onChanged: (value) {
+                              ucapanKomen.value = value;
+                            },
+                            decoration: InputDecoration(
+                              hintText: 'Ucapan',
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: ucapanSave,
-                      icon: const Icon(Icons.send),
-                    ),
-                  ]),
+                        IconButton(
+                          onPressed: ucapanSave,
+                          icon: const Icon(Icons.send),
+                        ),
+                      ]),
+                    ],
+                  ),
                 ],
               ),
             ),
@@ -621,7 +693,7 @@ _launchURL_waze() async {
 _launchURL_addToGCalender() async {
   // print("test");
   const url =
-      'https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=M2hrdnNzY20xcGpidGJzODM3bG9pNW10ZGUgbXVraGxpc2g5OUBt&tmsrc=mukhlish99%40gmail.com';
+      'https://calendar.google.com/calendar/ical/cdf3d30fd03271c87cb74fa3d6c2530cf4a73bb217b6c478dafaa938d475b9c8%40group.calendar.google.com/public/basic.ics';
   final uri = Uri.parse(url);
   if (await canLaunchUrl(uri))
     return await launchUrl(uri);

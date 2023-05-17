@@ -15,6 +15,7 @@ class HomeScreen extends StatelessWidget {
     controller.selectedIndex.value = 2;
     return Stack(children: <Widget>[
       Scaffold(
+          resizeToAvoidBottomInset: false,
           floatingActionButton: IconButton(
             icon: Icon(
               Icons.info,

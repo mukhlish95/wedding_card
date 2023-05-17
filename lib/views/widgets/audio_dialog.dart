@@ -1,9 +1,10 @@
-import 'package:audioplayers/audioplayers.dart';
+// import 'package:audioplayers/audioplayers.dart';
+import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
 AudioDialog() {
-  final player = AudioPlayer();
+  // final player = AudioPlayer();
   Get.defaultDialog(
       title: "Play Music",
       middleText: "",
@@ -18,8 +19,9 @@ AudioDialog() {
                     backgroundColor: MaterialStateProperty.all(
                         Color.fromARGB(255, 0, 11, 109))),
                 onPressed: () async {
-                  await player
-                      .play(DeviceFileSource('assets/sounds/selawat.mp3'));
+                  // final assetsAudioPlayer = AssetsAudioPlayer();
+                  AssetsAudioPlayer.playAndForget(Audio("sounds/selawat.mp3"));
+
                   Get.back();
                 },
                 label: Text("Play"),

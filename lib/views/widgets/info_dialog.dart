@@ -28,10 +28,10 @@ InfoDialog() {
                 ListTile(
                   leading: Icon(Icons.language),
                   title: Text('Services'),
-                  subtitle: Text('Web and Mobile app services'),
+                  subtitle: Text('Web development'),
                 ),
                 ListTile(
-                  leading: Icon(Icons.person),
+                  leading: Icon(Icons.contact_phone),
                   title: Text('Contacts'),
                   subtitle: SelectableText('601135515539'),
                 ),
