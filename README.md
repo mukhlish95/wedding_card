@@ -1,4 +1,4 @@
-# wedding_card
+# ecard
 
 A new Flutter project.
 

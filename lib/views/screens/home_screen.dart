@@ -53,7 +53,7 @@ class HomeScreen extends StatelessWidget {
               showSelectedLabels: true,
               showUnselectedLabels: true,
               unselectedItemColor: Color.fromARGB(255, 255, 211, 100),
-              backgroundColor: Color.fromARGB(255, 19, 1, 102),
+              backgroundColor: Color.fromARGB(255, 1, 47, 45),
               iconSize: 30,
               unselectedFontSize: 12,
               items: const <BottomNavigationBarItem>[
@@ -63,7 +63,7 @@ class HomeScreen extends StatelessWidget {
                     // color: Colors.blueAccent,
                   ),
                   label: 'Lokasi',
-                  backgroundColor: Color.fromARGB(255, 20, 1, 105),
+                  backgroundColor: Color.fromARGB(255, 1, 47, 45),
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(
@@ -71,7 +71,7 @@ class HomeScreen extends StatelessWidget {
                     // color: Colors.blueAccent,
                   ),
                   label: 'Kalendar',
-                  backgroundColor: Color.fromARGB(255, 20, 1, 105),
+                  backgroundColor: Color.fromARGB(255, 1, 47, 45),
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(
@@ -79,7 +79,7 @@ class HomeScreen extends StatelessWidget {
                     // color: Colors.blueAccent,
                   ),
                   label: 'Hubungi',
-                  backgroundColor: Color.fromARGB(255, 20, 1, 105),
+                  backgroundColor: Color.fromARGB(255, 1, 47, 45),
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(
@@ -87,7 +87,7 @@ class HomeScreen extends StatelessWidget {
                     // color: Colors.blueAccent,
                   ),
                   label: 'Kehadiran',
-                  backgroundColor: Color.fromARGB(255, 20, 1, 105),
+                  backgroundColor: Color.fromARGB(255, 1, 47, 45),
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(
@@ -95,7 +95,7 @@ class HomeScreen extends StatelessWidget {
                     // color: Colors.blueAccent,
                   ),
                   label: 'Ucapan',
-                  backgroundColor: Color.fromARGB(255, 20, 1, 105),
+                  backgroundColor: Color.fromARGB(255, 1, 47, 45),
                 ),
               ],
               currentIndex: controller.selectedIndex.value,

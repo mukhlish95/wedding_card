@@ -17,10 +17,10 @@ AudioDialog() {
               ElevatedButton.icon(
                 style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(
-                        Color.fromARGB(255, 0, 11, 109))),
+                        Color.fromARGB(255, 1, 47, 45))),
                 onPressed: () async {
                   // final assetsAudioPlayer = AssetsAudioPlayer();
-                  AssetsAudioPlayer.playAndForget(Audio("sounds/selawat.mp3"));
+                  AssetsAudioPlayer.playAndForget(Audio("sounds/mzain.mp3"));
 
                   Get.back();
                 },
@@ -35,7 +35,7 @@ AudioDialog() {
               ElevatedButton.icon(
                 style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(
-                        Color.fromARGB(255, 0, 11, 109))),
+                        Color.fromARGB(255, 1, 47, 45))),
                 onPressed: () => Get.back(),
                 icon: Icon(Icons.stop),
                 label: Text("Close"),

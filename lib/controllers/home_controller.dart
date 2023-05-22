@@ -181,7 +181,7 @@ class HomeController extends GetxController {
                             style: ButtonStyle(
                                 backgroundColor:
                                     MaterialStatePropertyAll<Color>(
-                                        Color.fromARGB(255, 2, 0, 131)))),
+                                        Color.fromARGB(255, 1, 47, 45)))),
                       ),
                       Padding(
                         padding: EdgeInsets.all(8.0),
@@ -191,7 +191,7 @@ class HomeController extends GetxController {
                             style: ButtonStyle(
                                 backgroundColor:
                                     MaterialStatePropertyAll<Color>(
-                                        Color.fromARGB(255, 2, 0, 131)))),
+                                        Color.fromARGB(255, 1, 47, 45)))),
                       )
                     ],
                   )
@@ -479,7 +479,7 @@ class HomeController extends GetxController {
                             //   child: const Text(
                             //     'tutup',
                             //     style: TextStyle(
-                            //         color: Color.fromARGB(255, 2, 0, 131)),
+                            //         color: Color.fromARGB(255, 1, 47, 45)),
                             //   ),
                             // ),
                             ElevatedButton(
@@ -488,7 +488,7 @@ class HomeController extends GetxController {
                               style: const ButtonStyle(
                                 backgroundColor:
                                     MaterialStatePropertyAll<Color>(
-                                        Color.fromARGB(255, 2, 0, 131)),
+                                        Color.fromARGB(255, 1, 47, 45)),
                               ),
                             ),
                           ],
